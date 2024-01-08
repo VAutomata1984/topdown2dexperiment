@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://l22uhdi0mvxb"]
+
+[ext_resource type="Script" path="res://scripts/Enemy.cs" id="1_dtit3"]
+[ext_resource type="Texture2D" uid="uid://3ahht2o8c7jj" path="res://sprites/Enemy T.png" id="1_gq0cv"]
+[ext_resource type="Script" path="res://scripts/Health.cs" id="2_6ggxo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3e45q"]
+radius = 21.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3s35h"]
+radius = 24.0
+
+[node name="Enemy II" type="CharacterBody2D" groups=["enemy"]]
+motion_mode = 1
+script = ExtResource("1_dtit3")
+speed = 100.0
+damage = 50.0
+
+[node name="Health" type="Node2D" parent="."]
+script = ExtResource("2_6ggxo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3e45q")
+
+[node name="GFX" type="Sprite2D" parent="."]
+position = Vector2(-2, 0)
+rotation = 1.5708
+texture = ExtResource("1_gq0cv")
+
+[node name="AttackRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+shape = SubResource("CircleShape2D_3s35h")
+
+[connection signal="body_entered" from="AttackRange" to="." method="OnAttackRangeBodyEnter"]
+[connection signal="body_exited" from="AttackRange" to="." method="OnAttackRangeBodyExit"]
