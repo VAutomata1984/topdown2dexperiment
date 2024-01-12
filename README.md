@@ -1,4 +1,4 @@
-# topdown2dexperiment
+# Top-down 2D Shooter in Godot 
 
 Author: Matthew Vollo 
 Date: 1/7/2024
